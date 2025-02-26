@@ -1,0 +1,10 @@
+1740417008329 | GET Request | Req From -> /
+1740417030663 | GET Request | Req From -> /about?id=1&name=dhruv
+1740417182188 | GET Request | Req From -> /about?id=1&name=dhruv
+1740417193137 | GET Request | Req From -> /about
+1740417199734 | GET Request | Req From -> /signup
+1740417272482 | POST Request | Req From -> /signup
+1740417345539 | POST Request | Req From -> /signup
+1740417468426 | POST Request | Req From -> /signup
+1740417489396 | POST Request | Req From -> /signup
+1740417507825 | POST Request | Req From -> /signup
