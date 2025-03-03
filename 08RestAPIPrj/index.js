@@ -5,7 +5,6 @@ const app = express();
 const PORT = 3000;
 
 var users = require("./MOCK_DATA.json");
-const { stringify } = require("querystring");
 
 // Middleware to parse JSON body
 app.use(express.json());
