@@ -1,8 +1,8 @@
-var User = require("../Models/user");
+var User = require("../Models/user.js");
 
 async function getAllUsers(req, res) {
   try {
-    const users = await User.find();
+    const users = await User.find({});
     return res.status(200).json(users);
   } catch (err) {
     console.log("Error in Getting All Users-> ", err);
@@ -14,7 +14,7 @@ async function getUserById(req, res) {
   try {
     const id = req.params.userId;
     const user = await User.findById(id);
-
+    console.log(user);
     if (!user) {
       return res.status(404).send("User Not Found");
     }
@@ -32,7 +32,7 @@ async function createUser(req, res) {
     await newUser.save();
     return res.status(201).json("User Added");
   } catch (err) {
-    console.log("Error -> ", err);
+    console.log("Error in creating User -> ", err);
     return res.status(500).send("Error Occured while creating user");
   }
 }
@@ -41,6 +41,7 @@ async function updateUserById(req, res) {
   try {
     const id = req.params.userId;
     var user = await User.findById(id);
+    console.log("user - ", user);
     if (!user) {
       return res.status(404).send("User Not Found");
     }

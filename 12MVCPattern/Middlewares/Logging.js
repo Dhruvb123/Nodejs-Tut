@@ -5,11 +5,13 @@ function createLogs(fileName) {
     fs.appendFile(
       fileName,
       `${Date.now()} | ${req.method} Request | Req From -> ${req.route}\n`,
-      (err) => {
-        console.log("Error while logging : ", err);
+      (err, data) => {
+        if (err) {
+          console.log("Error while logging : ", err);
+        }
+        next();
       }
     );
-    next();
   };
 }
 
