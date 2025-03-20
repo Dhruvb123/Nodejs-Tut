@@ -28,15 +28,14 @@ async function createShortUrl(req, res) {
 }
 
 async function redirectShortURL(req, res) {
-  const shortUrl = urlModel.findById(req.params.url);
-  if (!shortUrl || shortUrl.length() !== 8) {
+  const shortUrlObj = await urlModel.findById(req.params.url);
+  if (!shortUrlObj || shortUrlObj.shortURL.length() !== 8) {
     return res.status(400).json("Please supply a Valid Short URL");
   }
 
-  const urlObj = urlModel.findById(shortUrl);
-  if (!urlObj) {
-    return res.status(400).json("Please supply a Valid Short URL");
-  }
+  shortUrlObj.visited.push(Date.now());
+
+  await shortUrlObj.save();
 
   return res.redirect(urlObj.originalURL);
 }
