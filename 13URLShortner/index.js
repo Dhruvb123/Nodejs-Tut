@@ -1,7 +1,7 @@
 const express = require("express");
 
 const { connectToMongoDB } = require("./connection");
-const { urlRouter } = require("");
+const { urlRouter } = require("./Router/urlRouter");
 
 const app = express();
 const PORT = 3000;
