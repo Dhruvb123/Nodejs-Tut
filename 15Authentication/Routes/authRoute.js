@@ -23,7 +23,7 @@ router.get("/login", getLoginPage);
 router.post("/login", login);
 
 // Other Routes Route
-router.get("/", isAuth, getHomePage);
+router.get("/", isAuth, isAuth, getHomePage);
 router.get("/logout", logout);
 
 module.exports = { authRoutes: router };

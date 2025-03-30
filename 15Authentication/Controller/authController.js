@@ -36,6 +36,7 @@ async function login(req, res) {
     }
 
     // Set cookie with user ID (for identification)
+    // Just a demo in real practice we generate a uuid and map it with the user obj and store it on the server
     res.cookie("userId", user._id.toString(), { httpOnly: true });
     res.redirect("/");
   } catch (err) {
