@@ -10,7 +10,7 @@ async function getSignup(req, res) {
 }
 
 async function postSignup(req, res) {
-  console.log("object");
+  console.log("SignUp post route reached");
   const { username, password } = req.body;
 
   try {
