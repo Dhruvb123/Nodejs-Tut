@@ -10,6 +10,7 @@ async function getSignup(req, res) {
 }
 
 async function postSignup(req, res) {
+  console.log("object");
   const { username, password } = req.body;
 
   try {
@@ -27,10 +28,12 @@ async function postSignup(req, res) {
 
 // Login
 async function getLogin(req, res) {
+  console.log("Login Get Route Reached");
   return res.render("login");
 }
 
 async function postLogin(req, res) {
+  console.log("Login Post Route Reached");
   const { username, password } = req.body;
 
   try {
@@ -60,6 +63,7 @@ async function postLogin(req, res) {
 
 // Auth App Routes
 async function getHomePage(req, res) {
+  console.log("Home Page Route Reached");
   const token = req.cookies.token;
   if (!token) {
     return res.redirect("/login");
