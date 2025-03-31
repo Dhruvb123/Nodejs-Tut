@@ -70,6 +70,7 @@ async function getHomePage(req, res) {
   }
 
   try {
+    // In reality this verification part also goes in middleware func
     const decodedData = jwt.verify(token, process.env.JWT_SecretKey);
     console.log(decodedData);
     const user = await User.findById(decodedData.id);
