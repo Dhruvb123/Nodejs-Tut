@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Upload</title>
+  </head>
+  <body>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <label for="text-ip">Text Field: </label>
+      <input type="text" class="text-ip" />
+      <input type="file" name="profile_img" />
+      <button type="submit">Submit</button>
+    </form>
+    <form action="/upload-many" method="post" enctype="multipart/form-data">
+      <label for="text-ip">Text Field: </label>
+      <input type="text" class="text-ip" />
+      <input type="file" name="documents" multiple />
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

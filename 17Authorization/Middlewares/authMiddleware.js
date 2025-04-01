@@ -32,7 +32,7 @@ async function authenticateUser(req, res, next) {
   });
 }
 
-async function isAdmin(req, res, next) {
+function isAdmin(req, res, next) {
   const role = req.user.role;
   if (!role || role !== "admin") {
     return res.end("Unauthorized User");
