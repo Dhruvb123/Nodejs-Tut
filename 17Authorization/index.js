@@ -2,8 +2,7 @@ const cookieParser = require("cookie-parser");
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const ejs = require("ejs");
-const { isAdmin, authenticateUser } = require("./Middlewares/authMiddleware");
+const { authenticateUser } = require("./Middlewares/authMiddleware");
 const authRoute = require("./Routes/authRoute");
 const urlRoute = require("./Routes/urlRoute");
 
