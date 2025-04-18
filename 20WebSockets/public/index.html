@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Live Log Viewer</title>
+  </head>
+  <body>
+    <h2>Live Log Stream</h2>
+    <div id="log"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      const logDiv = document.getElementById("log");
+
+      socket.on("init", (lines) => {
+        logDiv.innerText = lines.join("\n");
+      });
+
+      socket.on("log", (line) => {
+        logDiv.innerText += "\n" + line;
+        logDiv.scrollTop = logDiv.scrollHeight;
+      });
+    </script>
+  </body>
+</html>
