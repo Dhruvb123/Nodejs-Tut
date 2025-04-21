@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Live Log Viewer</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
   </head>
   <body>
-    <h2>Live Log Stream</h2>
-    <div id="log"></div>
-
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      const socket = io();
-      const logDiv = document.getElementById("log");
-
-      socket.on("init", (lines) => {
-        logDiv.innerText = lines.join("\n");
-      });
-
-      socket.on("log", (line) => {
-        logDiv.innerText += "\n" + line;
-        logDiv.scrollTop = logDiv.scrollHeight;
-      });
-    </script>
+    <h1>My Reader</h1>
+    <p id="log-text-area"></p>
   </body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    let area = document.getElementById("log-text-area");
+    const socket = io();
+
+    socket.on("init", (data) => {
+      area.innerText = data.join("\n");
+    });
+
+    socket.on("log-update", (data) => {
+      area.innerText += "\n" + data;
+    });
+  </script>
 </html>

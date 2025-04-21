@@ -5,7 +5,7 @@ const socketIo = require("socket.io");
 const readline = require("readline");
 const path = require("path");
 
-const LOG_FILE_PATH = path.join(__dirname, "logs.txt");
+const LOG_FILE_PATH = __dirname + "/logs.txt";
 
 const app = express();
 const server = http.createServer(app);
@@ -22,9 +22,8 @@ async function getLastNLines(path, n) {
   try {
     for await (const line of rl) {
       lines.push(line);
-      if (lines.length > n) lines.shift(); // Keep only the last 'n' lines
     }
-    return lines;
+    return lines.slice(-n);
   } catch (error) {
     throw error;
   }
@@ -41,7 +40,7 @@ io.on("connection", async (socket) => {
   let lastSize = 0;
 
   // Initialize with current file size
-  fs.stat(LOG_FILE_PATH, (_, stats) => {
+  fs.stat(LOG_FILE_PATH, (err, stats) => {
     if (stats) {
       lastSize = stats.size;
     }
@@ -70,7 +69,9 @@ io.on("connection", async (socket) => {
         });
 
         let newContent = "";
-        readStream.on("data", (chunk) => (newContent += chunk));
+        readStream.on("data", (chunk) => {
+          newContent += chunk;
+        });
         readStream.on("end", () => {
           if (newContent.trim()) {
             const newLines = newContent.trim().split("\n");
