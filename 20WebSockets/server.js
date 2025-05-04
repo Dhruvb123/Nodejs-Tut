@@ -1,12 +1,13 @@
 const fs = require("fs");
 const http = require("http");
 const express = require("express");
-const socketIo = require("socket.io");
 const readline = require("readline");
 const path = require("path");
 
 const LOG_FILE_PATH = __dirname + "/logs.txt";
 
+// SOCKET BASICS
+const socketIo = require("socket.io");
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
