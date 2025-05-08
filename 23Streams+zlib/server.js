@@ -1,6 +1,6 @@
 const express = require("express");
 const fs = require("fs");
-
+const zlib = require("zlib");
 const app = express();
 
 // LOADS ENTIRE FILE TO MEMORY
@@ -22,6 +22,11 @@ app.get("/", (req, res) => {
 });
 
 // CREATING ZIP FILE WO LOADING MAIN FILE INTO THE MEMORY
+app.get("/zip", (req, res) => {
+  fs.createReadStream("file.txt").pipe(
+    zlib.createGzip().pipe(fs.createWriteStream("./sample.zip"))
+  );
+});
 
 app.listen(3000, () => {
   console.log("App running on port 3000");
